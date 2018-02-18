@@ -20,7 +20,5 @@
     - ccat
     - tmux
     - git-flow
-    - fzf
     - kubernetes
-    - jrnl
     - {role: macos, when: ansible_os_family == "Darwin"}
