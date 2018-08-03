@@ -32,14 +32,25 @@ mac_homebrew_packages:
   - wget
   - highlight
   - terminal-notifier
-  - wifi-password
   - htop-osx
   - httpie
   - postgresql
   - diff-so-fancy
   - gpg
+  # Top for docker containers
   - ctop
+  # User-contributed docs for Unix commands
   - tldr
+  # what's the wifi password?
+  - wifi-password
+  # Share tmux sessions
+  - tmate
+  # README rendering
+  - grip
+  # Prose linting
+  - vale
+  # For repeating commands
+  - watch
 
 # Mac Apps to be installed with homebrew-cask
 mac_cask_packages:
@@ -47,19 +58,20 @@ mac_cask_packages:
   - firefox
   - google-chrome
   # Utilities
-  - iterm2
+  - bettertouchtool
+  - iterm2-nightly  # nightly has faster rendering
   - keepingyouawake  # maintained caffeinate wrapper
   - flux
   - appcleaner
   - daisydisk
   # Docker
-  - docker
+  # Using "edge" for compatibility with docker-sync
+  # https://github.com/EugenMayer/docker-sync/issues/517#issuecomment-396652578
+  - docker-edge
   # chat
   - flowdock
   - slack
   - keybase
-  # Video conferencing
-  - zoomus
   # Password manager
   - lastpass
   # Backup/storage
@@ -70,18 +82,20 @@ mac_cask_packages:
   # Images
   - imageoptim  # optimizing images
   # Databases
-  - datagrip  # RDBMS client
+  - tableplus  # RDBMS client
   # VPN
   - tunnelblick
   # Design
   - sketch
   - marvel
   # REST Client
-  - postman
+  - insomnia
   # Text Editors
   - sublime-text
   # Git Client
   - sourcetree
+  # Docs
+  - dash
 
 # Mac-App-Store-only apps to be installed with mas
 # Use App IDs found with `mas search <name>`
@@ -89,15 +103,14 @@ mac_mas_packages:
   - 540348655  # Monosnap
   - 409203825  # Numbers
 
-# Node utilities
-npm_global_packages:
-  - webpack
-  - eslint
-  - eslint-config-airbnb
-  - eslint-plugin-react
-  - babel-eslint
-  - np
-
 ruby_global_gems:
   - lunchy
   - travis
+
+# Python versions to install with pyenv and set as global
+# Especially useful when using tox
+# NOTE: 2.7 gets installed by Homebrew
+pyenv_global_versions:
+  - 3.6.5
+  - 3.5.5
+  - 2.7.15

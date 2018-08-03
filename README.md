@@ -1,7 +1,9 @@
 dotfiles
 ========
 
-[sloria's dotfiles](https://github.com/sloria/dotfiles-old), rewritten as Ansible roles. Fully supports macOS. Red Hat and Debian support is good but not as complete.
+[sloria's dotfiles](https://github.com/sloria/dotfiles-old), rewritten as Ansible roles. Sets up a full local development environment with a **single command.**
+
+Fully supports macOS. Red Hat and Debian support is good but not as complete.
 
 a few neat features
 -------------------
@@ -9,7 +11,7 @@ a few neat features
 - zsh configured with [prezto](https://github.com/sorin-ionescu/prezto).
 - nice fonts for the terminal and coding.
 - iterm2 profile (w/ hotkey, themes, etc.)
-- python2, python3, pew (for managing virtualenvs), and pipenv
+- python2, python3, pyenv (for managing Python versions), and pyenv-virtualenv (for managing virtualenvs)
 - a tmux.conf that's pretty neat.
 - [tmuxp](https://tmuxp.git-pull.com/en/latest/) for tmux session management
 - vim with [vim-plug](https://github.com/junegunn/vim-plug) for plugin management. All configuration in a single file [.vimrc](https://github.com/sloria/dotfiles/blob/master/roles/vim/files/vimrc).
@@ -35,8 +37,8 @@ install
 ```bash
 # Replace git url with your fork
 # NOTE: It is important that you clone to ~/dotfiles
-$ git clone https://github.com/YOU/dotfiles.git ~/dotfiles
-$ cd ~/dotfiles
+git clone https://github.com/YOU/dotfiles.git ~/dotfiles
+cd ~/dotfiles
 ```
 
 - Update the following variables in `group_vars/local` (at a minimum)
@@ -46,12 +48,11 @@ $ cd ~/dotfiles
 - Optional, but recommended: Update `group_vars/local` with the programs you want installed by [homebrew][], [homebrew-cask][], and npm.
     - `mac_homebrew_packages`:  Utilities that don't get installed by the roles.
     - `mac_cask_packages`: Mac Apps you want installed with [homebrew-cask][].
-    - `npm_global_packages`: Node utilities.
 - Edit `local_env.yml` as you see fit. Remove any roles you don't use. Edit roles that you do use.
 - Run the installation script.
 
 ```bash
-$ ./bin/dot-bootstrap
+./bin/dot-bootstrap
 ```
 
 updating your local environment
@@ -60,7 +61,13 @@ updating your local environment
 Once you have the dotfiles installed you can run the following command to rerun the ansible playbook:
 
 ```bash
-$ dot-update
+dot-update
+```
+
+You can optionally pass role names
+
+```bash
+dot-update git python
 ```
 
 updating your dotfiles repo
@@ -69,8 +76,8 @@ updating your dotfiles repo
 To keep your fork up to date with the `sloria` fork:
 
 ```
-$ git remote add sloria https://github.com/sloria/dotfiles.git
-$ git pull sloria master
+git remote add sloria https://github.com/sloria/dotfiles.git
+git pull sloria master
 ```
 
 commands
@@ -117,7 +124,7 @@ what if I only want your vim?
 First make sure you have a sane vim compiled. On macOS, the following will do:
 
 ```
-brew install macvim --HEAD --with-override-system-vim --with-python
+brew install macvim --HEAD --with-override-system-vim
 ```
 
 The following commands will install vim-plug and download my `.vimrc`.
@@ -146,7 +153,6 @@ todo
 ----
 
 - Full Debian and Red Hat support
-- Add more options to `dot` script, e.g. for skipping tasks
 
 [homebrew]: http://brew.sh/
 [homebrew-cask]: https://github.com/caskroom/homebrew-cask
